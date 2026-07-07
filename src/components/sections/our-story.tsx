@@ -3,6 +3,7 @@ import { Ribbon } from "@/components/common/ribbon";
 import { SectionBackdrop } from "@/components/layout/section-backdrop";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
+import { PrenupGallery } from "@/components/sections/prenup-gallery";
 import { Heading, Text } from "@/components/ui/typography";
 
 export function OurStory() {
@@ -47,11 +48,7 @@ export function OurStory() {
           </FadeIn>
         </div>
 
-        <FadeIn delay={0.3} className="mt-12">
-          <div className="flex aspect-[16/9] items-center justify-center rounded-2xl border border-border/60 bg-card/60 backdrop-blur-sm">
-            <Text variant="caption">Photo placeholder</Text>
-          </div>
-        </FadeIn>
+        <PrenupGallery />
       </Container>
     </Section>
   );

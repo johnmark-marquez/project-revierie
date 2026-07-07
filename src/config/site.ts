@@ -1,7 +1,7 @@
 export const siteConfig = {
-  title: "John Mark & Sandra",
+  title: "Sandra & John Mark",
 
-  projectName: "Project Reverie",
+  projectName: "Project Reverie by John Mark Marquez",
 
   tagline: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
 
@@ -44,7 +44,8 @@ export const siteConfig = {
         end: "5:30 PM",
         duration: "2 hrs",
         title: "Cocktails",
-        description: "May include travel between venues.",
+        venue: "Narra Hill",
+        description: "May include travel between venues. May also include drinking and socializing. ",
       },
       {
         start: "5:30 PM",
@@ -105,5 +106,40 @@ export const siteConfig = {
   theme: {
     watercolor: true,
     paperTexture: true,
+  },
+
+  /** Drop photos in public/prenup/ and set each `image` path when ready. */
+  prenup: {
+    eyebrow: "Prenup",
+    title: "Before the big day",
+    description:
+      "A few favorites from our prenup session — more coming soon as we finish selecting photos.",
+    photos: [
+      {
+        id: "featured",
+        alt: "Sandra and John Mark during their prenup shoot",
+        caption: "Our favorite shot — coming soon",
+        featured: true,
+        tint: "mist",
+      },
+      {
+        id: "laughing",
+        alt: "Sandra and John Mark laughing together",
+        caption: "Coming soon",
+        tint: "rose",
+      },
+      {
+        id: "walking",
+        alt: "Sandra and John Mark walking hand in hand",
+        caption: "Coming soon",
+        tint: "sage",
+      },
+      // {
+      //   id: "portrait",
+      //   alt: "Close-up portrait of Sandra and John Mark",
+      //   caption: "Coming soon",
+      //   tint: "lavender",
+      // },
+    ],
   },
 } as const;
