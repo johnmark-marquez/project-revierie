@@ -62,7 +62,7 @@ export const siteConfig = {
     message:
       "We can't wait to celebrate with you. Use the invitation code on your invite to RSVP — it only takes a minute.",
     buttonLabel: "RSVP with invitation code",
-    note: "Scan the QR code on your invitation, or enter your code below.",
+    note: "Scan the QR code on your invite, or enter your code below.",
     fields: [
       "Will you be attending?",
       "Message for the couple",
@@ -73,7 +73,7 @@ export const siteConfig = {
     {
       question: "How do I RSVP?",
       answer:
-        "Your invitation includes a personal RSVP link or QR code. You can also scroll to the RSVP section and enter your invitation code. If you’ve already responded, you can update your answer anytime before the deadline.",
+        "Your invitation includes a personal RSVP that is linked via QR code or to an invitation code. You can also scroll to the RSVP section and enter your invitation code. If you’ve already responded, you can update your answer anytime before the deadline.",
     },
     {
       question: "What is the dress code?",

@@ -28,7 +28,7 @@ function CodeEntryContent() {
           <CardHeader>
             <CardTitle>Invitation code</CardTitle>
             <CardDescription>
-              It&apos;s printed on your invitation or QR card.
+              It&apos;s sent to you via message/email or scanned from QR code.
             </CardDescription>
           </CardHeader>
           <CardContent>
