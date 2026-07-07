@@ -22,7 +22,7 @@ export const siteConfig = {
     },
     reception: {
       venue: "Narra Hill",
-      address: "Barangay Niyugan, Laurel, Batangas",
+      address: "Brgy Niyugan, Laurel, Batangas",
       time: "5:30 PM",
       image: "/venues/narra-hill.jpg",
       imageAlt: "Narra Hill pavilion with gardens and views of Taal Lake",
