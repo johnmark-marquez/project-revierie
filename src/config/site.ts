@@ -58,12 +58,23 @@ export const siteConfig = {
   },
 
   rsvp: {
-    url: "https://forms.google.com/",
     deadline: "To be announced",
-    message: "We can't wait to celebrate with you. Please let us know if you'll be joining us.",
+    message:
+      "We can't wait to celebrate with you. Use the invitation code on your invite to RSVP — it only takes a minute.",
+    buttonLabel: "RSVP with invitation code",
+    note: "Scan the QR code on your invitation, or enter your code below.",
+    fields: [
+      "Will you be attending?",
+      "Message for the couple",
+    ],
   },
 
   faq: [
+    {
+      question: "How do I RSVP?",
+      answer:
+        "Your invitation includes a personal RSVP link or QR code. You can also scroll to the RSVP section and enter your invitation code. If you’ve already responded, you can update your answer anytime before the deadline.",
+    },
     {
       question: "What is the dress code?",
       answer:

@@ -31,6 +31,8 @@ jobs:
 
       - name: Build static site
         run: pnpm build:pages
+        env:
+          NEXT_PUBLIC_RSVP_API_URL: ${{ secrets.NEXT_PUBLIC_RSVP_API_URL }}
 
       - uses: actions/upload-pages-artifact@v3
         with:
