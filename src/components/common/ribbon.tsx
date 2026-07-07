@@ -1,6 +1,7 @@
 "use client";
 
 import { useId } from "react";
+import { useWatercolorQuality } from "@/hooks/use-watercolor-quality";
 import { palette } from "@/lib/watercolor/palette";
 import { rainbow } from "@/lib/watercolor/themes";
 import { cn } from "@/lib/utils";
@@ -12,6 +13,8 @@ interface RibbonProps {
 
 export function Ribbon({ className, variant = "painted" }: RibbonProps) {
   const id = useId().replace(/:/g, "");
+  const quality = useWatercolorQuality();
+  const usePaintFilter = quality === "full";
 
   if (variant === "straight") {
     return (
@@ -67,7 +70,7 @@ export function Ribbon({ className, variant = "painted" }: RibbonProps) {
         strokeWidth="2.8"
         strokeLinecap="round"
         strokeLinejoin="round"
-        filter={`url(#${filterId})`}
+        filter={usePaintFilter ? `url(#${filterId})` : undefined}
         opacity="0.85"
       />
     </svg>

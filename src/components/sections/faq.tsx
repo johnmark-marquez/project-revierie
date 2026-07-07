@@ -14,7 +14,7 @@ export function Faq() {
       aria-labelledby="faq-heading"
       className="relative overflow-hidden"
     >
-      <SectionBackdrop tier="minimal" />
+      <SectionBackdrop preset="minimal" />
       <Container size="sm">
         <FadeIn>
           <Ribbon className="mb-8 w-16" />

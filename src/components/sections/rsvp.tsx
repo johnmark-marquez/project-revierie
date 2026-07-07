@@ -21,7 +21,7 @@ export function Rsvp() {
       aria-labelledby="rsvp-heading"
       className="relative overflow-hidden"
     >
-      <SectionBackdrop tier="minimal" />
+      <SectionBackdrop preset="rsvp" />
       <Container size="sm">
         <FadeIn>
           <div className="text-center">

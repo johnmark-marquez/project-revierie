@@ -39,7 +39,12 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${cormorant.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="bg-background min-h-full antialiased">{children}</body>
+      <body
+        suppressHydrationWarning
+        className="bg-background min-h-full antialiased"
+      >
+        {children}
+      </body>
     </html>
   );
 }

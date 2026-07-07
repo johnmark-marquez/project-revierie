@@ -33,7 +33,7 @@ export function Venues() {
       aria-labelledby="venues-heading"
       className="relative overflow-hidden"
     >
-      <SectionBackdrop tier="details" />
+      <SectionBackdrop preset="venue" />
       <Container>
         <FadeIn>
           <Ribbon className="mb-8 w-16" />

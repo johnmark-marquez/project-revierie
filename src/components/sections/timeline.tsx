@@ -28,7 +28,7 @@ export function Timeline() {
       aria-labelledby="details-heading"
       className="relative overflow-hidden"
     >
-      <SectionBackdrop tier="details" />
+      <SectionBackdrop preset="details" />
       <Container>
         <FadeIn>
           <Ribbon className="mb-8 w-16" />

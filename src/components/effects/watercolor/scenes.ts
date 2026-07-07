@@ -203,7 +203,7 @@ export const storyScene: WatercolorScene = {
   ],
 };
 
-/** Whisper washes — timeline & venues */
+/** Whisper washes — timeline */
 export const detailsScene: WatercolorScene = {
   id: "details",
   background: "ivory",
@@ -240,10 +240,176 @@ export const detailsScene: WatercolorScene = {
   ],
 };
 
+/** Hillside greens & sky — venues */
+export const venueScene: WatercolorScene = {
+  id: "venue",
+  background: "ivory",
+  texture: "linen",
+  lighting: "afternoon",
+  motion: false,
+  washes: [
+    {
+      shape: "petal",
+      color: "sage",
+      size: 400,
+      blur: 48,
+      opacity: 0.11,
+      composition: {
+        anchor: "top-left",
+        offset: { x: 8, y: 15 },
+        rotation: -14,
+        depth: 0,
+      },
+    },
+    {
+      shape: "bloom",
+      color: "mint",
+      size: 380,
+      blur: 50,
+      opacity: 0.1,
+      composition: {
+        anchor: "top-left",
+        offset: { x: 72, y: 10 },
+        rotation: 18,
+        depth: 1,
+      },
+    },
+    {
+      shape: "cloud",
+      color: "sky",
+      size: 420,
+      blur: 54,
+      opacity: 0.09,
+      composition: {
+        anchor: "top-left",
+        offset: { x: 40, y: 55 },
+        rotation: 6,
+        depth: 0,
+      },
+    },
+    {
+      shape: "wash",
+      color: "mist",
+      size: 360,
+      blur: 52,
+      opacity: 0.08,
+      composition: {
+        anchor: "top-left",
+        offset: { x: 85, y: 70 },
+        rotation: -10,
+        depth: 2,
+      },
+    },
+  ],
+};
+
+/** Warm invitation tones — RSVP */
+export const rsvpScene: WatercolorScene = {
+  id: "rsvp",
+  background: "ivory",
+  texture: "cotton",
+  lighting: "morning",
+  motion: true,
+  washes: [
+    {
+      shape: "ribbon",
+      color: "rose",
+      size: 400,
+      blur: 46,
+      opacity: 0.12,
+      composition: {
+        anchor: "top-left",
+        offset: { x: 12, y: 20 },
+        rotation: -8,
+        depth: 1,
+      },
+    },
+    {
+      shape: "splash",
+      color: "apricot",
+      size: 360,
+      blur: 48,
+      opacity: 0.11,
+      composition: {
+        anchor: "top-left",
+        offset: { x: 78, y: 18 },
+        rotation: 14,
+        depth: 0,
+      },
+    },
+    {
+      shape: "bloom",
+      color: "buttercream",
+      size: 380,
+      blur: 50,
+      opacity: 0.1,
+      composition: {
+        anchor: "top-left",
+        offset: { x: 48, y: 75 },
+        rotation: -5,
+        depth: 2,
+      },
+    },
+  ],
+};
+
+/** Soft dusk close — footer */
+export const footerScene: WatercolorScene = {
+  id: "footer",
+  background: "ivory",
+  texture: "linen",
+  lighting: "evening",
+  motion: false,
+  washes: [
+    {
+      shape: "wash",
+      color: "lilac",
+      size: 380,
+      blur: 56,
+      opacity: 0.09,
+      composition: {
+        anchor: "top-left",
+        offset: { x: 10, y: 30 },
+        rotation: -12,
+        depth: 0,
+      },
+    },
+    {
+      shape: "cloud",
+      color: "periwinkle",
+      size: 400,
+      blur: 58,
+      opacity: 0.08,
+      composition: {
+        anchor: "top-left",
+        offset: { x: 65, y: 25 },
+        rotation: 10,
+        depth: 1,
+      },
+    },
+    {
+      shape: "ribbon",
+      color: "mist",
+      size: 340,
+      blur: 54,
+      opacity: 0.07,
+      composition: {
+        anchor: "top-left",
+        offset: { x: 35, y: 80 },
+        rotation: -6,
+        depth: 0,
+      },
+    },
+  ],
+};
+
 export const scenePresets = {
   hero: heroScene,
   story: storyScene,
   details: detailsScene,
+  venue: venueScene,
+  rsvp: rsvpScene,
+  footer: footerScene,
 } as const;
 
 export type ScenePresetId = keyof typeof scenePresets;

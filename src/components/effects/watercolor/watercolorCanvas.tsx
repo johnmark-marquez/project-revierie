@@ -1,11 +1,15 @@
+"use client";
+
 import { palette } from "@/lib/watercolor/palette";
 import { renderScene } from "@/lib/watercolor/renderer";
+import { sceneForQuality } from "@/lib/watercolor/scene-quality";
 import type { LightingPreset, TexturePreset } from "@/lib/watercolor/themes";
+import { useWatercolorQuality } from "@/hooks/use-watercolor-quality";
+import type { WatercolorQuality } from "@/hooks/use-watercolor-quality";
 import { Lighting } from "./lighting";
 import { Motion } from "./motion";
 import { PaperTexture } from "./paperTexture";
 import type { WatercolorScene } from "./types";
-import { WatercolorFilter } from "./watercolorFilter";
 import { WatercolorLayer } from "./watercolorLayer";
 
 interface Props {
@@ -15,6 +19,7 @@ interface Props {
   texture?: TexturePreset;
   lighting?: LightingPreset;
   animated?: boolean;
+  quality?: WatercolorQuality;
 }
 
 /**
@@ -29,27 +34,42 @@ export function WatercolorCanvas({
   texture,
   lighting,
   animated,
+  quality: qualityOverride,
 }: Props) {
-  const texturePreset = texture ?? scene.texture ?? "cotton";
-  const lightingPreset = lighting ?? scene.lighting ?? "morning";
-  const motionEnabled = animated ?? scene.motion ?? false;
-  const washes = renderScene(scene, { lighting: lightingPreset });
+  const detectedQuality = useWatercolorQuality();
+  const quality = qualityOverride ?? detectedQuality;
+  const adaptedScene = sceneForQuality(scene, quality);
+  const texturePreset = texture ?? adaptedScene.texture ?? "cotton";
+  const lightingPreset = lighting ?? adaptedScene.lighting ?? "morning";
+  const motionEnabled =
+    quality === "full" && (animated ?? adaptedScene.motion ?? false);
+  const washes = renderScene(adaptedScene, {
+    lighting: lightingPreset,
+    quality,
+  });
+  const useSvgFilters = quality === "full";
+  const usePaperTexture = quality !== "minimal";
 
   return (
     <div
       className={`relative overflow-hidden ${className}`}
-      style={{ backgroundColor: palette[scene.background] }}
+      style={{ backgroundColor: palette[adaptedScene.background] }}
     >
-      <WatercolorFilter />
-
       <Motion enabled={motionEnabled}>
         {washes.map((wash) => (
-          <WatercolorLayer key={wash.key} wash={wash} />
+          <WatercolorLayer
+            key={wash.key}
+            wash={wash}
+            quality={quality}
+            useFilter={useSvgFilters}
+          />
         ))}
       </Motion>
 
-      <PaperTexture preset={texturePreset} />
-      <Lighting preset={lightingPreset} />
+      {usePaperTexture ? (
+        <PaperTexture preset={texturePreset} lite={quality !== "full"} />
+      ) : null}
+      {quality !== "minimal" ? <Lighting preset={lightingPreset} /> : null}
 
       <div className="relative z-10">{children}</div>
     </div>

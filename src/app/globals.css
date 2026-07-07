@@ -193,6 +193,14 @@
   }
 }
 
+@media (max-width: 768px), (pointer: coarse) {
+  .watercolor-drift,
+  .watercolor-motion,
+  .watercolor-motion .watercolor-wash {
+    animation: none !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

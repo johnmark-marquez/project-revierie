@@ -12,7 +12,7 @@ export function OurStory() {
       aria-labelledby="story-heading"
       className="relative overflow-hidden"
     >
-      <SectionBackdrop tier="story" />
+      <SectionBackdrop preset="story" />
 
       <Container>
         <FadeIn>

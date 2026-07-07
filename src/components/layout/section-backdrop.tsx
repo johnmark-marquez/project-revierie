@@ -1,51 +1,76 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import {
-  detailsScene,
-  storyScene,
+  scenePresets,
   type ScenePresetId,
 } from "@/components/effects/watercolor/scenes";
 import { PaperTexture } from "@/components/effects/watercolor/paperTexture";
 import { WatercolorCanvas } from "@/components/effects/watercolor/watercolorCanvas";
+import { useWatercolorQuality } from "@/hooks/use-watercolor-quality";
 
-export type BackdropTier = ScenePresetId | "minimal";
-
-const presetScenes = {
-  story: storyScene,
-  details: detailsScene,
-} as const;
+export type BackdropPreset = ScenePresetId | "minimal";
 
 interface SectionBackdropProps {
-  tier: BackdropTier;
+  preset: BackdropPreset;
+}
+
+function PaperOnlyBackdrop() {
+  const quality = useWatercolorQuality();
+
+  return (
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 -z-10 bg-ivory"
+    >
+      <PaperTexture preset="cotton" lite={quality !== "full"} />
+    </div>
+  );
 }
 
 /**
- * Tiered section backgrounds:
- * - hero: full canvas (handled in Hero section directly)
- * - story: light washes
- * - details: whisper washes (timeline, venues)
- * - minimal: ivory + paper grain only (rsvp, faq)
+ * Section backgrounds mapped to scene presets.
+ * Defers heavy canvases until near the viewport and downgrades on phones.
  */
-export function SectionBackdrop({ tier }: SectionBackdropProps) {
-  if (tier === "minimal") {
-    return (
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 bg-ivory"
-      >
-        <PaperTexture preset="cotton" />
-      </div>
+export function SectionBackdrop({ preset }: SectionBackdropProps) {
+  const quality = useWatercolorQuality();
+  const ref = useRef<HTMLDivElement>(null);
+  const [isNearViewport, setIsNearViewport] = useState(false);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsNearViewport(entry?.isIntersecting ?? false);
+      },
+      { rootMargin: "120px 0px", threshold: 0.01 },
     );
+
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+
+  if (preset === "minimal" || preset === "hero" || quality === "minimal") {
+    return <PaperOnlyBackdrop />;
   }
 
-  if (tier === "hero") {
-    return null;
-  }
-
-  const scene = presetScenes[tier];
+  const scene = scenePresets[preset];
 
   return (
-    <WatercolorCanvas
-      scene={scene}
-      className="pointer-events-none absolute inset-0 -z-10 h-full"
-    />
+    <div
+      ref={ref}
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 -z-10"
+    >
+      {isNearViewport ? (
+        <WatercolorCanvas scene={scene} className="h-full" />
+      ) : (
+        <PaperOnlyBackdrop />
+      )}
+    </div>
   );
 }
