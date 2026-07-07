@@ -14,6 +14,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Heading, Text } from "@/components/ui/typography";
+import { assetPath } from "@/lib/asset-path";
 import { siteConfig } from "@/config/site";
 
 const venues = [
@@ -52,7 +53,7 @@ export function Venues() {
               <Card className="h-full overflow-hidden p-0">
                 <div className="relative aspect-[16/10] w-full">
                   <Image
-                    src={venue.image}
+                    src={assetPath(venue.image)}
                     alt={venue.imageAlt}
                     fill
                     sizes="(max-width: 768px) 100vw, 50vw"
