@@ -10,7 +10,7 @@ export const siteConfig = {
     dateFormatted: "February 10, 2028",
     ceremony: {
       venue: "Don Bosco Chapel on the Hill",
-      address: "Tagaytay City, Cavite",
+      address: "Batulao Rd, Nasugbu, Batangas",
       time: "2:00 PM",
       image: "/venues/chapel-on-the-hill.jpg",
       imageAlt:
@@ -22,7 +22,7 @@ export const siteConfig = {
     },
     reception: {
       venue: "Narra Hill",
-      address: "Tagaytay City, Cavite",
+      address: "Barangay Niyugan, Laurel, Batangas",
       time: "5:30 PM",
       image: "/venues/narra-hill.jpg",
       imageAlt: "Narra Hill pavilion with gardens and views of Taal Lake",
