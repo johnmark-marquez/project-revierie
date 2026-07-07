@@ -34,6 +34,7 @@ export const siteConfig = {
       {
         start: "2:00 PM",
         end: "3:00 PM",
+        duration: "1 hr",
         title: "Ceremony proper",
         venue: "Don Bosco Chapel on the Hill",
         description:
@@ -53,13 +54,13 @@ export const siteConfig = {
         duration: "2 hrs 30 min",
         title: "Reception",
         venue: "Narra Hill",
-        description: "Estimated reception proper — dinner, dancing, and celebration.",
+        description: "Estimated reception proper — dinner, laughter, and celebration.",
       },
     ],
   },
 
   rsvp: {
-    deadline: "To be announced",
+    deadline: "January 10, 2028",
     message:
       "We can't wait to celebrate with you. Use the invitation code on your invite to RSVP — it only takes a minute.",
     buttonLabel: "RSVP with invitation code",
@@ -71,6 +72,10 @@ export const siteConfig = {
   },
 
   faq: [
+    {
+      question: "Why is the wedding on a Thursday?",
+      answer: "We chose this date because it is a good date for us since our anniversary as a couple is also on the 10th, but in March."
+    },
     {
       question: "How do I RSVP?",
       answer:
@@ -89,12 +94,12 @@ export const siteConfig = {
     {
       question: "Is there parking available?",
       answer:
-        "Yes, parking is available at both the chapel and reception venue. ",
+        "Yes, parking is available at both the chapel and reception venue. There is a dedicated parking area on the Narra Hill venue for guests while for the chapel, it may be a bit challenging to find parking since the only street parking is available, we suggest to arrive early to secure a spot.",
     },
     {
       question: "Where should we stay?",
       answer:
-        "Tagaytay has many wonderful hotels and bed-and-breakfasts. We recommend booking early, especially for the weekend of our wedding.",
+        "Tagaytay has many wonderful hotels and bed-and-breakfasts. We recommend booking early, especially if you plan to stay the night before or after the wedding.",
     },
     {
       question: "Do you have a gift registry?",
