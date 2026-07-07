@@ -11,6 +11,7 @@ export type { WatercolorCanvasProps };
 
 export function WatercolorCanvas({
   quality: qualityOverride,
+  scene,
   ...props
 }: WatercolorCanvasProps) {
   const detectedQuality = useRenderQuality();
@@ -18,10 +19,10 @@ export function WatercolorCanvas({
 
   switch (quality) {
     case "high":
-      return <HighQualityCanvas {...props} />;
+      return <HighQualityCanvas scene={scene} {...props} />;
     case "medium":
-      return <MediumQualityCanvas {...props} />;
+      return <MediumQualityCanvas scene={scene} {...props} />;
     case "low":
-      return <LowQualityCanvas {...props} />;
+      return <LowQualityCanvas scene={scene} {...props} />;
   }
 }

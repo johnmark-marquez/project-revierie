@@ -1,15 +1,13 @@
 "use client";
 
 import { palette } from "@/lib/watercolor/palette";
-import { renderScene } from "@/lib/watercolor/renderer";
 import { Lighting } from "../lighting";
 import { Motion } from "../motion";
+import { OrganicWash } from "../organicWash";
 import { PaperTexture } from "../paperTexture";
-import { WatercolorFilter } from "../watercolorFilter";
-import { WatercolorLayer } from "../watercolorLayer";
 import type { WatercolorCanvasProps } from "./types";
 
-/** Desktop — full SVG filters, pigment layers, paper grain, drift motion. */
+/** Desktop — full organic wash, paper grain, drift motion. */
 export function HighQualityCanvas({
   scene,
   children,
@@ -21,22 +19,14 @@ export function HighQualityCanvas({
   const texturePreset = texture ?? scene.texture ?? "cotton";
   const lightingPreset = lighting ?? scene.lighting ?? "morning";
   const motionEnabled = animated ?? scene.motion ?? false;
-  const washes = renderScene(scene, {
-    lighting: lightingPreset,
-    quality: "high",
-  });
 
   return (
     <div
       className={`relative overflow-hidden ${className}`}
       style={{ backgroundColor: palette[scene.background] }}
     >
-      <WatercolorFilter />
-
       <Motion enabled={motionEnabled}>
-        {washes.map((wash) => (
-          <WatercolorLayer key={wash.key} wash={wash} useFilter />
-        ))}
+        <OrganicWash scene={scene} animated={motionEnabled} />
       </Motion>
 
       <PaperTexture preset={texturePreset} />

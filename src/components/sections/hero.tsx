@@ -24,7 +24,7 @@ export function Hero() {
         {quality === "low" ? (
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-x-0 top-16 bottom-0 bg-[radial-gradient(ellipse_at_center,rgba(250,248,245,0.68)_0%,rgba(250,248,245,0.22)_50%,transparent_84%)]"
+            className="pointer-events-none absolute inset-x-0 top-16 bottom-0 z-[2] bg-[radial-gradient(ellipse_at_center,rgba(250,248,245,0.55)_0%,rgba(250,248,245,0.2)_58%,transparent_90%)]"
           />
         ) : null}
         <FadeIn className="relative flex w-full max-w-2xl flex-col items-center">

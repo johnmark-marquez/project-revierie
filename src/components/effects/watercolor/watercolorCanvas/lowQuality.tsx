@@ -1,11 +1,11 @@
 "use client";
 
 import { palette } from "@/lib/watercolor/palette";
-import { staticColorWash } from "@/lib/watercolor/static-color-wash";
+import { OrganicWash } from "../organicWash";
 import { PaperTexture } from "../paperTexture";
 import type { WatercolorCanvasProps } from "./types";
 
-/** Mobile — soft CSS gradient blobs, static paper, gentle opacity fade. */
+/** Mobile — procedural organic wash, static paper, gentle opacity fade. */
 export function LowQualityCanvas({
   scene,
   children,
@@ -21,14 +21,8 @@ export function LowQualityCanvas({
       className={`relative overflow-hidden ${className}`}
       style={{ backgroundColor: palette[scene.background] }}
     >
-      <div
-        aria-hidden="true"
-        className={`pointer-events-none absolute inset-0 z-[1] ${motionEnabled ? "watercolor-opacity-motion" : ""}`}
-        style={{ background: staticColorWash(scene, "low") }}
-      />
-
+      <OrganicWash scene={scene} animated={motionEnabled} />
       <PaperTexture preset={texturePreset} lite />
-
       <div className="relative z-10">{children}</div>
     </div>
   );
