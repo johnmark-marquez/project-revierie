@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { assetPath } from "@/lib/asset-path";
 
 interface FaqQrCode {
   name: string;
@@ -60,7 +61,7 @@ export function AccordionItem({
                 >
                   <div className="relative aspect-square w-full max-w-[220px]">
                     <Image
-                      src={qr.image}
+                      src={assetPath(qr.image)}
                       alt={qr.imageAlt}
                       fill
                       sizes="(max-width: 640px) 50vw, 220px"
