@@ -3,11 +3,57 @@ export const siteConfig = {
 
   projectName: "Project Reverie by John Mark Marquez",
 
-  tagline: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  tagline: "We celebrate the oldest and deepest magic of all: Love",
+
+  /**
+   * Soft launch: homepage is Hero + Save the Date + Celebrate CTA.
+   * Flip to false when you’re ready for the full invitation site.
+   */
+  saveTheDateOnly: true,
+
+  /** Show the Our Story section on the full homepage (ignored when saveTheDateOnly is true). */
+  showOurStory: true,
+
+  /** Show the Prenup gallery section on the full homepage (ignored when saveTheDateOnly is true). */
+  showPrenup: true,
+
+  story: {
+    eyebrow: "Our Story",
+    title: "Our Story",
+    description: "Every love story is beautiful, but ours is our favorite.",
+    /** Each milestone needs title + description. `when` is optional. */
+    milestones: [
+      {
+        when: "2006",
+        title: "Every Witch and Wizard Has an Origin Story",
+        description:
+          "Met at high school and became friends since then.",
+      },
+      { 
+        when: "2018",
+        title: "After All This Time?",
+        description:
+          "Reconnected and started dating.",
+      },
+      {
+        when: "April 26, 2026",
+        title: "Always",
+        description:
+          "She said yes!",
+      },
+      {
+        when: "February 10, 2028",
+        title: "Mischief Managed",
+        description:
+          "The next chapter — and we would love for you to be there.",
+      },
+    ],
+  },
 
   wedding: {
     date: new Date("2028-02-10T14:00:00+08:00"),
     dateFormatted: "February 10, 2028",
+    locationShort: "Tagaytay · Batangas",
     ceremony: {
       venue: "Don Bosco Chapel on the Hill",
       address: "Batulao Rd, Nasugbu, Batangas",

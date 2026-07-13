@@ -353,6 +353,56 @@ export const rsvpScene: WatercolorScene = {
   ],
 };
 
+/** Soft dawn wash — Save the Date */
+export const saveTheDateScene: WatercolorScene = {
+  id: "save-the-date",
+  background: "ivory",
+  texture: "cotton",
+  lighting: "morning",
+  motion: false,
+  washes: [
+    {
+      shape: "wash",
+      color: "rose",
+      size: 400,
+      blur: 56,
+      opacity: 0.1,
+      composition: {
+        anchor: "top-left",
+        offset: { x: 12, y: 20 },
+        rotation: -8,
+        depth: 0,
+      },
+    },
+    {
+      shape: "cloud",
+      color: "mist",
+      size: 420,
+      blur: 58,
+      opacity: 0.1,
+      composition: {
+        anchor: "top-left",
+        offset: { x: 78, y: 35 },
+        rotation: 12,
+        depth: 1,
+      },
+    },
+    {
+      shape: "petal",
+      color: "gold",
+      size: 340,
+      blur: 50,
+      opacity: 0.08,
+      composition: {
+        anchor: "top-left",
+        offset: { x: 45, y: 75 },
+        rotation: -4,
+        depth: 0,
+      },
+    },
+  ],
+};
+
 /** Soft dusk close — footer */
 export const footerScene: WatercolorScene = {
   id: "footer",
@@ -405,6 +455,7 @@ export const footerScene: WatercolorScene = {
 
 export const scenePresets = {
   hero: heroScene,
+  saveTheDate: saveTheDateScene,
   story: storyScene,
   details: detailsScene,
   venue: venueScene,

@@ -4,15 +4,30 @@ import Link from "next/link";
 import { PaperTexture } from "@/components/effects/watercolor/paperTexture";
 import { SectionBackdrop } from "@/components/layout/section-backdrop";
 import { siteConfig } from "@/config/site";
+import { rsvpPath } from "@/lib/guest-code";
 import { cn } from "@/lib/utils";
 
-const navLinks = [
-  { href: "#story", label: "Story" },
+const fullNavLinks = [
+  ...(siteConfig.showOurStory
+    ? [{ href: "#story", label: "Story" }]
+    : []),
+  ...(siteConfig.showPrenup
+    ? [{ href: "#prenup", label: "Prenup" }]
+    : []),
   { href: "#details", label: "Details" },
   { href: "#venues", label: "Venues" },
   { href: "#rsvp", label: "RSVP" },
   { href: "#faq", label: "FAQ" },
 ];
+
+const softLaunchNavLinks = [
+  { href: "#save-the-date", label: "Save the Date" },
+  { href: rsvpPath(), label: "RSVP" },
+];
+
+const navLinks = siteConfig.saveTheDateOnly
+  ? softLaunchNavLinks
+  : fullNavLinks;
 
 interface SiteShellProps {
   children: React.ReactNode;
@@ -42,19 +57,26 @@ export function SiteShell({ children }: SiteShellProps) {
           </Link>
 
           <ul className="scrollbar-none flex w-full items-center justify-between gap-1 overflow-x-auto sm:w-auto sm:justify-end sm:gap-6">
-            {navLinks.map((link) => (
-              <li key={link.href} className="shrink-0">
-                <a
-                  href={link.href}
-                  className={cn(
-                    "inline-flex min-h-11 min-w-11 items-center justify-center px-2 text-xs whitespace-nowrap text-muted-foreground transition-colors sm:min-h-0 sm:min-w-0 sm:px-0 sm:text-sm",
-                    "hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+            {navLinks.map((link) => {
+              const className = cn(
+                "inline-flex min-h-11 min-w-11 items-center justify-center px-2 text-xs whitespace-nowrap text-muted-foreground transition-colors sm:min-h-0 sm:min-w-0 sm:px-0 sm:text-sm",
+                "hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+              );
+
+              return (
+                <li key={link.href} className="shrink-0">
+                  {link.href.startsWith("#") ? (
+                    <a href={link.href} className={className}>
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link href={link.href} className={className}>
+                      {link.label}
+                    </Link>
                   )}
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
+                </li>
+              );
+            })}
           </ul>
         </nav>
       </header>
@@ -75,7 +97,7 @@ export function SiteShell({ children }: SiteShellProps) {
         <div className="relative z-[1] mx-auto max-w-3xl px-6 text-center">
           <p className="font-heading text-lg text-ink">{siteConfig.title}</p>
           <p className="text-caption mt-2">
-            February 10, 2028 · Made with love
+            {siteConfig.wedding.dateFormatted} · Made with love
           </p>
           <p className="text-caption mt-1 text-muted-foreground/70">
             {siteConfig.projectName}

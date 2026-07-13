@@ -4,15 +4,23 @@ import { SectionWashFade } from "@/components/effects/watercolor/section-wash-fa
 import { SectionBackdrop } from "@/components/layout/section-backdrop";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
-import { PrenupGallery } from "@/components/sections/prenup-gallery";
 import { Heading, Text } from "@/components/ui/typography";
+import { siteConfig } from "@/config/site";
+
+type StoryMilestone = {
+  when?: string;
+  title: string;
+  description: string;
+};
+
+const milestones = siteConfig.story.milestones as readonly StoryMilestone[];
 
 export function OurStory() {
   return (
     <Section
       id="story"
       aria-labelledby="story-heading"
-      className="relative -mt-20 overflow-hidden pt-20 md:-mt-28 md:pt-24"
+      className="relative overflow-hidden"
     >
       <SectionBackdrop preset="story" />
       <SectionWashFade position="top" />
@@ -21,36 +29,48 @@ export function OurStory() {
         <FadeIn>
           <Ribbon className="mb-8 w-16" />
           <Heading as="h2" id="story-heading" className="mb-4">
-            Our Story
+            {siteConfig.story.title}
           </Heading>
           <Text className="mb-12 max-w-2xl text-muted-foreground">
-            Every love story is beautiful, but ours is our favorite.
+            {siteConfig.story.description}
           </Text>
         </FadeIn>
 
-        <div className="grid gap-12 md:grid-cols-2">
-          <FadeIn delay={0.1}>
-            <div className="space-y-4">
-              <Heading as="h3">How we met</Heading>
-              <Text className="text-muted-foreground">
-                [Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.]
-              </Text>
-            </div>
-          </FadeIn>
+        <div className="relative space-y-0">
+          <div
+            aria-hidden="true"
+            className="absolute top-0 bottom-0 left-4 w-px bg-border md:left-1/2 md:-translate-x-px"
+          />
 
-          <FadeIn delay={0.2}>
-            <div className="space-y-4">
-              <Heading as="h3">How we got engaged</Heading>
-              <Text className="text-muted-foreground">
-                [Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.]
-              </Text>
-            </div>
-          </FadeIn>
+          {milestones.map((milestone, index) => (
+            <FadeIn key={milestone.title} delay={index * 0.1}>
+              <div
+                className={`relative flex flex-col gap-4 pb-12 md:flex-row md:gap-8 ${
+                  index % 2 === 0 ? "md:flex-row-reverse" : ""
+                }`}
+              >
+                <div className="hidden flex-1 md:block" />
+
+                <div
+                  aria-hidden="true"
+                  className="absolute left-4 z-10 size-3 -translate-x-1/2 rounded-full border-2 border-gold bg-ivory md:left-1/2"
+                />
+
+                <div className="flex-1 pl-10 md:pl-0">
+                  {milestone.when ? (
+                    <p className="mb-2 text-caption tracking-[0.18em] text-gold uppercase">
+                      {milestone.when}
+                    </p>
+                  ) : null}
+                  <Heading as="h3">{milestone.title}</Heading>
+                  <Text className="mt-2 text-muted-foreground">
+                    {milestone.description}
+                  </Text>
+                </div>
+              </div>
+            </FadeIn>
+          ))}
         </div>
-
-        <PrenupGallery />
       </Container>
     </Section>
   );

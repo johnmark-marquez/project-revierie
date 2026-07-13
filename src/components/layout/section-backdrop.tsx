@@ -33,5 +33,11 @@ export function SectionBackdrop({ preset }: SectionBackdropProps) {
     return <PaperOnlyBackdrop />;
   }
 
-  return <StaticBackdrop scene={scenePresets[preset]} fadeTop={preset === "story"} />;
+  return (
+    <StaticBackdrop
+      scene={scenePresets[preset]}
+      fadeTop={preset === "story" || preset === "saveTheDate"}
+      fadeBottom={preset === "saveTheDate"}
+    />
+  );
 }
